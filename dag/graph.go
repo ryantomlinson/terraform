@@ -343,13 +343,17 @@ func (g *Graph) SetDebugWriter(w io.Writer) {
 	g.debug.Encode(newMarshalGraph("root", g))
 }
 
-func (g *Graph) AnnotateVertex(v Vertex, info string) {
-	va := newVertexAnnotation(v, info)
+// VertexDebugInfo encodes arbitrary information about a vertex in the graph
+// debug logs.
+func (g *Graph) VertexDebugInfo(v Vertex, info string) {
+	va := newVertexDebugInfo(v, info)
 	g.debug.Encode(va)
 }
 
-func (g *Graph) AnnotateEdge(e Edge, info string) {
-	ea := newEdgeAnnotation(e, info)
+// EdgeDebugInfo encodes arbitrary information about an edge in the graph debug
+// logs.
+func (g *Graph) EdgeDebugInfo(e Edge, info string) {
+	ea := newEdgeDebugInfo(e, info)
 	g.debug.Encode(ea)
 }
 
